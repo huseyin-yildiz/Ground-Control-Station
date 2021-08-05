@@ -1,0 +1,9 @@
+roll        =   -50;
+pitch       =   20;
+heading =   30;
+turn = -10;
+vario = 2;
+speed = 15;
+altitude = 1895;
+pressure = 8;
+

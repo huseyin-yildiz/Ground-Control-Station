@@ -1,0 +1,142 @@
+
+
+
+<html dir="ltr" lang="en"><head>
+    <meta charset="utf-8">
+    <!-- Syntax coloration -->
+    <link rel="stylesheet" type="text/css" href="_examples_data/prism/prism.css">
+    <!-- This page style -->
+    <link rel="stylesheet" type="text/css" href="_examples_data/style.css">
+    <!-- Flight Indicators library styles -->
+    <link rel="stylesheet" type="text/css" href="css/flightindicators.css">
+    <title>ALYA</title>
+</head>
+
+
+<body style="background-color: #fdd51b" class="vsc-initialized">
+
+<img src="alya.jpg" style="top: 20px;
+  right: 20px;   position: absolute;" width="200"  />
+
+
+
+<div style="width:100%" class="container">
+    <!-- Introduction -->
+    
+    
+	
+    
+
+    <!-- First example -->
+   
+
+    
+    
+
+    <!-- Second example -->
+    <h2 align="center">Ground Control System</h2>
+
+    <div class="examples">
+        <div>
+            <span id="airspeed"><div class="instrument airspeed" style="height: 200px; width: 200px;"><img src="img/fi_box.svg" class="background box" alt="" style="display: none;"><img src="img/speed_mechanics.svg" class="box" alt=""><div class="speed box" style="transform: rotate(284.845deg);"><img src="img/fi_needle.svg" class="box" alt=""></div><div class="mechanics box"><img src="img/fi_circle.svg" class="box" alt=""></div></div></span>
+            <span id="attitude"><div class="instrument attitude" style="height: 200px; width: 200px;"><img src="img/fi_box.svg" class="background box" alt=""><div class="roll box" style="transform: rotate(6.5334deg);"><img src="img/horizon_back.svg" class="box" alt=""><div class="pitch box" style="top: 3.83423%;"><img src="img/horizon_ball.svg" class="box" alt=""></div><img src="img/horizon_circle.svg" class="box" alt=""></div><div class="mechanics box"><img src="img/horizon_mechanics.svg" class="box" alt=""><img src="img/fi_circle.svg" class="box" alt=""></div></div></span>
+            <span id="altimeter"><div class="instrument altimeter" style="height: 200px; width: 200px;"><img src="img/fi_box.svg" class="background box" alt=""><div class="pressure box" style="transform: rotate(23.3102deg);"><img src="img/altitude_pressure.svg" class="box" alt=""></div><img src="img/altitude_ticks.svg" class="box" alt=""><div class="needleSmall box" style="transform: rotate(2986.56deg);"><img src="img/fi_needle_small.svg" class="box" alt=""></div><div class="needle box" style="transform: rotate(435.6deg);"><img src="img/fi_needle.svg" class="box" alt=""></div><div class="mechanics box"><img src="img/fi_circle.svg" class="box" alt=""></div></div></span>            
+        </div><div>
+            <span id="turn_coordinator"><div class="instrument turn_coordinator" style="height: 200px; width: 200px;"><img src="img/fi_box.svg" class="background box" alt=""><img src="img/turn_coordinator.svg" class="box" alt=""><div class="turn box" style="transform: rotate(-9.42388deg);"><img src="img/fi_tc_airplane.svg" class="box" alt=""></div><div class="mechanics box"><img src="img/fi_circle.svg" class="box" alt=""></div></div></span>
+            <span id="heading"><div class="instrument heading" style="height: 200px; width: 200px;"><img src="img/fi_box.svg" class="background box" alt=""><div class="heading box" style="transform: rotate(-8297deg);"><img src="img/heading_yaw.svg" class="box" alt=""></div><div class="mechanics box"><img src="img/heading_mechanics.svg" class="box" alt=""><img src="img/fi_circle.svg" class="box" alt=""></div></div></span>
+            <span id="variometer"><div class="instrument vario" style="height: 200px; width: 200px;"><img src="img/fi_box.svg" class="background box" alt=""><img src="img/vertical_mechanics.svg" class="box" alt=""><div style="transform: rotate(56.5433deg);" class="vario box"><img src="img/fi_needle.svg" class="box" alt=""></div><div class="mechanics box"><img src="img/fi_circle.svg" class="box" alt=""></div></div></span>
+        </div>
+    </div>
+
+    
+    <p></p>
+    
+    
+    <p></p><p></p>
+</div>
+
+<footer>
+    Alya Technology Team 2021<br>
+</footer>
+
+<!-- Syntax color -->
+<script src="_examples_data/prism/prism.js"></script>
+
+<!-- Importing jQuery library -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+<!-- Importing the FlightIndicators library -->
+<script src="js/jquery.flightindicators.js"></script>
+
+
+
+<script type="text/javascript" src="data.json"></script>
+
+
+
+
+<!-- Let start our scripts -->
+<script type="text/javascript">
+// First static example
+
+
+
+var first_attitude = $.flightIndicator('#first_attitude', 'attitude', {size:350, roll:0, pitch:0, showBox : true});
+// Dynamic examples
+
+
+
+
+
+	var attitude = $.flightIndicator('#attitude', 'attitude', {roll:0, pitch:0, size:400, 			showBox : false});
+	var heading = $.flightIndicator('#heading', 'heading', {heading:1, showBox:false, size:400});
+	var variometer = $.flightIndicator('#variometer', 'variometer', {vario:105, showBox:false, size:400});
+	var airspeed = $.flightIndicator('#airspeed', 'airspeed', {showBox: false, airspeed : 50, size:400});
+	var altimeter = $.flightIndicator('#altimeter', 'altimeter',{showBox: false, size:400});
+	var turn_coordinator = $.flightIndicator('#turn_coordinator', 'turn_coordinator', {turn:turn,showBox: false, size:400});
+
+
+
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+
+
+	
+
+	eval(this.responseText);
+
+
+
+
+	
+	attitude.setRoll(roll);			// Sets the roll of an attitude indicator
+	attitude.setPitch(pitch);			// Sets the pitch of an attitude indicator
+	//heading.setHeading(heading);		// Sets the heading of an heading indicator
+	variometer.setVario(vario);			// Sets the climb speed of an variometer indicator
+	airspeed.setAirSpeed(speed);		// Sets the speed of an airspeed indicator
+	altimeter.setAltitude(altitude);	// Sets the altitude of an altimeter indicator
+	altimeter.setPressure(pressure);	// Sets the pressure of an altimeter indicator
+	turn_coordinator.setTurn(turn);
+
+	//alert("test");
+
+
+    }
+  xhttp.open("GET", "data.json", true);
+  xhttp.send();
+}
+
+
+
+setInterval(loadDoc, 100);
+
+</script>
+
+
+
+
+
+</body></html>
+
+
